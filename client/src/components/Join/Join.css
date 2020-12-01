@@ -1,0 +1,100 @@
+html, body {
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.join-outer-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+  background-color: #1A1A1D;
+}
+
+.join-inner-container {
+  width: 90%;
+}
+
+.join-inputs {
+  border-radius: 5px;
+  padding: 15px 20px;
+  width: 100%;
+  border: none;
+}
+
+.heading {
+  color: white;
+  font-size: 2.5em;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+
+.button {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2979FF;
+    padding: 15px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    width: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+@media (min-width: 320px) {
+  .join-inner-container {
+    width: 80%;
+  }
+}
+
+@media (min-width: 480px) {
+  .join-inner-container {
+    width: 70%;
+  }
+}
+
+@media (min-width: 576px) {
+  .join-inner-container {
+    width: 60%;
+  }
+}
+
+@media (min-width: 768px) {
+  .join-inner-container {
+    width: 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .join-inner-container {
+    width: 40%;
+  }
+}
+
+@media (min-width: 1192px) {
+  .join-inner-container {
+    width: 30%;
+  }
+}
