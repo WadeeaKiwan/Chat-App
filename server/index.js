@@ -10,7 +10,11 @@ const router = require('./router');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, {
+  cors: {
+    origin: 'http://localhost:3000'
+  }
+});
 
 io.on('connection', (socket) => {
   console.log('We have a new connection!!!');
@@ -39,7 +43,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('User had left!!!');
   })
-})
+});
 
 app.use(router);
 
