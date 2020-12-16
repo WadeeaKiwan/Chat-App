@@ -41,9 +41,6 @@ io.on('connection', (socket) => {
 
     io.to(user.room).emit('message', { user: user.name, text: message });
 
-    // Update the state of the users in the room
-    io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
-
     callback();
   });
 
@@ -52,6 +49,9 @@ io.on('connection', (socket) => {
 
     if (user) {
       io.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left!` });
+
+      // Update the state of the users in the room
+      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
     }
 
     console.log('User had left!!!');
