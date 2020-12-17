@@ -67,7 +67,7 @@ app.use(cors());
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('../../client/build'));
+  app.use(express.static('../client/build'));
 
   app.get('*', (req, res, next) => {
     res.sendFile(path.resolve(__dirname, '..', '..', 'client', 'build', 'index.html'));
