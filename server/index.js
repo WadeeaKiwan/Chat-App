@@ -1,7 +1,7 @@
 const express = require('express');
 const socketIo = require('socket.io');
 const http = require('http');
-// const cors = require('cors');
+const cors = require('cors');
 const path = require('path');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
 });
 
 app.use(router);
-// app.use(cors());
+app.use(cors());
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
