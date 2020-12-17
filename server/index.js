@@ -1,7 +1,7 @@
 const express = require('express');
 const socketIo = require('socket.io');
 const http = require('http');
-const cors = require('cors');
+// const cors = require('cors');
 const path = require('path');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
@@ -15,7 +15,8 @@ const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
     // origin: 'http://localhost:3000'
-    origin: 'https://chat-app-2021.herokuapp.com/'
+    // origin: 'https://chat-app-2021.herokuapp.com/'
+    origin: '*'
   }
 });
 
@@ -62,7 +63,7 @@ io.on('connection', (socket) => {
 });
 
 app.use(router);
-app.use(cors());
+// app.use(cors());
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
