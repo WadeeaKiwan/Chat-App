@@ -1,6 +1,8 @@
 const express = require('express');
 const socketIo = require('socket.io');
 const http = require('http');
+// const cors = require('cors');
+const path = require('path');
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
@@ -12,7 +14,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: 'http://localhost:3000'
+    // origin: 'http://localhost:3000'
+    origin: 'https://chat-app-2021.herokuapp.com/'
   }
 });
 
@@ -59,5 +62,16 @@ io.on('connection', (socket) => {
 });
 
 app.use(router);
+// app.use(cors());
+
+// Serve static assets in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('client/build'));
+
+  app.get('*', (req, res, next) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
