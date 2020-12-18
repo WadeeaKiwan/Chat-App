@@ -15,7 +15,8 @@ const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
     // origin: 'http://localhost:3000'
-    origin: 'https://chat-app-2021.herokuapp.com/'
+    // origin: 'https://chat-app-2021.herokuapp.com/'
+    origin: '*'
   }
 });
 
