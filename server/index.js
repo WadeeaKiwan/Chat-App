@@ -64,10 +64,10 @@ io.on('connection', (socket) => {
 app.use(router);
 app.use(cors());
 
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self'");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Content-Security-Policy", "default-src 'self' 'unsafe-inline'");
+//   next();
+// });
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
