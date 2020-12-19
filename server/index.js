@@ -62,8 +62,8 @@ io.on('connection', (socket) => {
   })
 });
 
-app.use('/api', router);
 app.use(cors());
+app.use('/api', router);
 
 // app.use((req, res, next) => {
 //   res.setHeader("Content-Security-Policy", "default-src 'self' 'unsafe-inline'");
