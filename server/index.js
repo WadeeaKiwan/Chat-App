@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
   })
 });
 
-app.use(router);
+app.use('/api', router);
 app.use(cors());
 
 // app.use((req, res, next) => {
@@ -76,6 +76,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('../client/build'));
 
   app.get('*', (req, res, next) => {
+    console.log('path.resolve: ', path.resolve(__dirname, '..', '..', 'client', 'build', 'index.html'));
     res.sendFile(path.resolve(__dirname, '..', '..', 'client', 'build', 'index.html'));
   });
 }
