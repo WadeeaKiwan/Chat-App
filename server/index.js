@@ -35,8 +35,6 @@ io.on('connection', (socket) => {
 
     io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
 
-    console.log(getUsersInRoom(user.room));
-
     callback();
   });
 
@@ -65,19 +63,14 @@ io.on('connection', (socket) => {
 app.use(cors());
 app.use('/api', router);
 
-// app.use((req, res, next) => {
-//   res.setHeader("Content-Security-Policy", "default-src 'self' 'unsafe-inline'");
-//   next();
-// });
-
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
-  app.use(express.static('../client/build'));
+  app.use(express.static(path.join(__dirname, '../client/build')));
 
   app.get('*', (req, res, next) => {
-    console.log('path.resolve: ', path.resolve(__dirname, '..', '..', 'client', 'build', 'index.html'));
-    res.sendFile(path.resolve(__dirname, '..', '..', 'client', 'build', 'index.html'));
+    console.log('path.join: ', path.join(__dirname, '../client/build/index.html'));
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
   });
 }
 
