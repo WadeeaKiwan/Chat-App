@@ -20,17 +20,13 @@ npm run dev
 
 #### Both the server and the client-side are deployed on `Heroku`:
 
-```
 https://chat-app-2021.herokuapp.com/
-```
 
 #### The client-side is also deployed on `Netlify`:
 
-```
 https://chat-app-2021.netlify.app/ 
-```
+
 
 #### The server-side url on `Heroku` is:
-```
+
 https://chat-app-2021.herokuapp.com/api/
-```
