@@ -22,6 +22,8 @@ npm run dev
 
 https://chat-app-2021.herokuapp.com/
 
+**Note:** Open more application tabs, join the same `Room` and start chatting :).
+
 #### The client-side is also deployed on `Netlify`:
 
 https://chat-app-2021.netlify.app/ 
