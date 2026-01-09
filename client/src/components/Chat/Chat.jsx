@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef  } from 'react';
+import {useLocation} from 'react-router';
 import queryString from 'query-string';
 import io from 'socket.io-client';
 
@@ -8,44 +9,48 @@ import Messages from '../Messages/Messages';
 import Input from '../Input/Input';
 import UsersContainer from '../UsersContainer/UsersContainer';
 
-let socket;
-
-const Chat = ({ location }) => {
+const Chat = () => {
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+
+  const socketRef = useRef(null)
+
   // const ENDPOINT = 'localhost:5000';
   const ENDPOINT = 'chat-app-2021.herokuapp.com';
+
+  const location = useLocation();
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ENDPOINT);
+     socketRef.current = io(ENDPOINT);
 
     setName(name);
     setRoom(room);
 
-    socket.emit('join', { name, room }, () => {
+    socketRef.current.emit('join', { name, room }, () => {
 
     });
 
     return () => {
-      socket.emit('disconnect');
+      // socket.emit('disconnect');
+      socketRef.current.disconnect();
 
-      socket.off()
+      socketRef.current.off()
     }
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
-    socket.on('message', (message) => {
+    socketRef.current.on('message', (message) => {
       setMessages([...messages, message])
     })
   }, [messages]);
 
   useEffect(() => {
-    socket.on('roomData', ({ users }) => {
+    socketRef.current.on('roomData', ({ users }) => {
       setUsers(users);
     })
   }, [users])
@@ -55,7 +60,7 @@ const Chat = ({ location }) => {
     event.preventDefault();
 
     if (message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
+      socketRef.current.emit('sendMessage', message, () => setMessage(''));
     }
   };
 
